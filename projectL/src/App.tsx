@@ -2,6 +2,7 @@ import Router from './Router.tsx';
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter } from 'react-router-dom';
 import { GlobalStyle } from './styles/global.ts';
+import { MainLayoutContainer } from './style.ts';
 
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
       <ThemeProvider theme={{}}>
         <GlobalStyle />
         <BrowserRouter>
-          <Router />
+          <MainLayoutContainer>
+            <Router />
+          </MainLayoutContainer>
         </BrowserRouter>
       </ThemeProvider>
     </>

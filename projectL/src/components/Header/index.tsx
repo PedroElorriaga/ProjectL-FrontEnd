@@ -1,4 +1,4 @@
-import { HeaderContainer, NavContentImg, NavContentLinks } from "./style"
+import { HeaderContainer, NavContentImg } from "./style"
 import Logo from "/logo.png";
 
 export default function Header() {
@@ -6,12 +6,8 @@ export default function Header() {
         <>
             <HeaderContainer>
                 <NavContentImg>
-                    <img src={Logo} alt="" />
+                    <img src={Logo} alt="Logo Lorenci" />
                 </NavContentImg>
-                <NavContentLinks>
-                    <a>Login</a>
-                    <a>Catalogo</a>
-                </NavContentLinks>
             </HeaderContainer>
         </>
     )

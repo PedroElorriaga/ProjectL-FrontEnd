@@ -1,5 +1,7 @@
-import { CatalogContainer } from "./styles";
+import { CatalogContainer, CatalogHeaderContainer, PerfumeLayoutContainer } from "./styles";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import PerfumeCard from "../../components/PerfumeCard";
 
 
 export default function Catalog() {
@@ -7,9 +9,14 @@ export default function Catalog() {
         <>
             <Header />
             <CatalogContainer>
-                <h1>Catalogo</h1>
-                <p>bla bal</p>
+                <CatalogHeaderContainer>
+                    PRODUTOS IMPORTADOS
+                </CatalogHeaderContainer>
+                <PerfumeLayoutContainer>
+                    <PerfumeCard />
+                </PerfumeLayoutContainer>
             </CatalogContainer>
+            <Footer />
         </>
     )
 }
