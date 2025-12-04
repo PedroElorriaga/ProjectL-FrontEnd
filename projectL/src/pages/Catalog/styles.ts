@@ -6,6 +6,7 @@ export const CatalogContainer = styled.main`
     width: 100%;
     flex-direction: column;
     flex-grow: 1;
+    padding-bottom: 4.5rem;
 `
 
 export const CatalogHeaderContainer = styled.div`
