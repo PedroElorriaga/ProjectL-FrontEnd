@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const PerfumeContainer = styled.div`
     display: flex;
-    /* background-color: #7F5D26; */
+    /* background-color: #AF8C4B; */
     flex-direction: column;
     height: 15rem;
-    width: 11.65rem;
+    width: 47%;
     border-radius: 10px;
     justify-content: center;
     align-items: center;
@@ -13,13 +13,21 @@ export const PerfumeContainer = styled.div`
     position: relative;
 
     img {
-        width: 99%;
-        height: 99%;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         border-radius: 10px;
     }
 
-    p {
+    .perfume {
+        position: absolute;
+        bottom: 0;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-bottom: 10%;
+    }
+
+    .preco {
         position: absolute;
         bottom: 0;
         text-transform: uppercase;

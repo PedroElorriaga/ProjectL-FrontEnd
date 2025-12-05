@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CatalogContainer = styled.main`
     display: flex;
-    background-color: aliceblue;
     width: 100%;
     flex-direction: column;
     flex-grow: 1;
@@ -14,13 +13,13 @@ export const CatalogHeaderContainer = styled.div`
     text-align: center;
     font-weight: 600;
     padding: 0.25rem;
+    color: #AF8C4B;
 `
 
 export const PerfumeLayoutContainer = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 1rem -1rem;
     flex-wrap: wrap;
     justify-content: space-between;
 
@@ -29,3 +28,46 @@ export const PerfumeLayoutContainer = styled.div`
         margin-top: 0.5rem;
     }
 `
+
+export const ModalOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+`
+
+export const ModalContent = styled.div`
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%; 
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+
+    img {
+        width: 50%;
+        height: 50%;
+    }
+`
+
+// export const CloseButton = styled.button`
+//     position: absolute;
+//     top: 10px;
+//     left: 15px;
+//     background: none;
+//     color: red;
+//     border: none;
+//     font-size: 1.5rem;
+//     cursor: pointer;
+// `;

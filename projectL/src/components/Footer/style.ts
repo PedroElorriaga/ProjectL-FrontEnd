@@ -8,6 +8,7 @@ export const FooterContainer = styled.footer`
     bottom: 0;
     left: 0;
     width: 100%;
+    background-color: black;
 `
 
 export const NavContentLink = styled.nav`
@@ -15,6 +16,7 @@ export const NavContentLink = styled.nav`
     align-items: center;
 
     svg {
+        color: #AF8C4B;
         margin:0 2rem;
         height: 100%;
     }
