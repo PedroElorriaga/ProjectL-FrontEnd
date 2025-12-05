@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: aliceblue;
+        background-color: black;
         font-family: 'Baloo 2', sans-serif;
     }
 
