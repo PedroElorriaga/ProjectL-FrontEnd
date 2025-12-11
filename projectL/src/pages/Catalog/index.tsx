@@ -23,7 +23,7 @@ export default function Catalog() {
 
     // useEffect Faz coisas depois que a tela termina de carregar, como buscar dados da internet.
     useEffect(() => {
-        const API_URL = 'http://192.168.15.9:3000/catalogo/';
+        const API_URL = 'https://lorenci-perfumes-api.onrender.com/catalogo/';
 
         axios.get(API_URL).then(response => {
             setItems(response.data.message);
@@ -63,7 +63,7 @@ export default function Catalog() {
                 <ModalOverlay onClick={handleCloseModal}>
                     <ModalContent onClick={(e) => e.stopPropagation()}>
                         <img
-                            src={`http://192.168.15.9:3000/static/perfumes/${selectedPerfume.imagem_url}`}
+                            src={`https://lorenci-perfumes-api.onrender.com/static/perfumes/${selectedPerfume.imagem_url}`}
                             alt={selectedPerfume.perfume}
                         />
                         <h2>{selectedPerfume.perfume} {selectedPerfume.tipo}</h2>
