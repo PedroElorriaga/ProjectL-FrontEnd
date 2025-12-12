@@ -9,7 +9,6 @@ export default function Footer() {
                     <BasketIcon size={32} />
                     <MagnifyingGlassIcon size={32} />
                     <UserIcon size={32} />
-                    <UserIcon size={32} />
                 </NavContentLink>
             </FooterContainer>
         </>
