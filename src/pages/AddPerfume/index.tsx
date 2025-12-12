@@ -19,7 +19,7 @@ export default function AddPerfume() {
             'imagem_url': null
         };
 
-        const targetUrl = 'http://192.168.15.6:3000/catalogo/';
+        const targetUrl = 'https://lorenci-perfumes-api.onrender.com/catalogo/';
 
         try {
             const response = await fetch(targetUrl, {
