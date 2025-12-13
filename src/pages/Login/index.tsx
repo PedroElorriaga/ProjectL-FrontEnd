@@ -1,0 +1,60 @@
+import { LoginContainer, LoginForm, LoginHeaderContainer } from "./styles";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import type { FormEvent } from "react";
+
+export default function LoginPerfume() {
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+
+        const data = {
+            'email': form['email'].value,
+            'password': form['password'].value
+        };
+
+        const targetUrl = 'https://lorenci-perfumes-api.onrender.com/login/';
+
+        try {
+            const response = await fetch(targetUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Sucesso:', result);
+                alert('Usuario logado com sucesso!');
+            } else {
+                const errorBody = await response.json();
+                console.error('Erro ao adicionar produto:', errorBody);
+                alert(`Erro: ${errorBody.message || response.statusText}`);
+            }
+        } catch (error) {
+            console.error('Erro na requisição:', error);
+            alert('Falha na comunicação com o servidor.');
+        }
+    };
+    return (
+        <>
+            <Header />
+            <LoginContainer>
+                <LoginHeaderContainer>
+                    CONECTAR SEU USUARIO
+                </LoginHeaderContainer>
+                <LoginForm method="post" onSubmit={handleSubmit}>
+                    <input type="email" name="email" id="email" placeholder="Email" />
+                    <input type="password" name="password" id="password" placeholder="Senha" />
+                    <input type="submit" value="Entrar" />
+                </LoginForm>
+            </LoginContainer>
+            <Footer />
+        </>
+    )
+}
