@@ -21,10 +21,13 @@ export default function AddPerfume() {
 
         const targetUrl = 'https://lorenci-perfumes-api.onrender.com/catalogo/';
 
+        const token = localStorage.getItem('jwt_token');
+
         try {
             const response = await fetch(targetUrl, {
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
