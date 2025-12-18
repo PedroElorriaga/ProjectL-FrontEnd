@@ -34,6 +34,7 @@ export const LoginForm = styled.form`
 
     input:focus {
         outline: none;
+        background-color: #af8c4b75;
     }
 
     input[type="submit"] {

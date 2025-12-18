@@ -29,7 +29,7 @@ export default function LoginPerfume() {
 
             if (response.ok) {
                 const result = await response.json();
-                console.log('Sucesso:', result);
+                localStorage.setItem('jwt_token', result.token)
                 alert('Usuario logado com sucesso!');
             } else {
                 const errorBody = await response.json();
