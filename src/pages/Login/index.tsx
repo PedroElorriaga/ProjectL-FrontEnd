@@ -15,7 +15,7 @@ export default function LoginPerfume() {
             'password': form['password'].value
         };
 
-        const targetUrl = 'https://lorenci-perfumes-api.onrender.com/login/';
+        const targetUrl = 'http://192.168.15.11:3000/login/';
 
         try {
             const response = await fetch(targetUrl, {
@@ -31,6 +31,7 @@ export default function LoginPerfume() {
                 const result = await response.json();
                 localStorage.setItem('jwt_token', result.token)
                 alert('Usuario logado com sucesso!');
+                window.location.href = '/catalogo';
             } else {
                 const errorBody = await response.json();
                 console.error('Erro ao adicionar produto:', errorBody);
@@ -49,8 +50,8 @@ export default function LoginPerfume() {
                     CONECTAR SEU USUARIO
                 </LoginHeaderContainer>
                 <LoginForm method="post" onSubmit={handleSubmit}>
-                    <input type="email" name="email" id="email" placeholder="Email" />
-                    <input type="password" name="password" id="password" placeholder="Senha" />
+                    <input type="email" name="email" id="email" placeholder="Email" required />
+                    <input type="password" name="password" id="password" placeholder="Senha" required />
                     <input type="submit" value="Entrar" />
                 </LoginForm>
             </LoginContainer>
