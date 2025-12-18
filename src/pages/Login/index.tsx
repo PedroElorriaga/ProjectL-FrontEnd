@@ -15,7 +15,7 @@ export default function LoginPerfume() {
             'password': form['password'].value
         };
 
-        const targetUrl = 'http://192.168.15.11:3000/login/';
+        const targetUrl = 'https://lorenci-perfumes-api.onrender.com/login/';
 
         try {
             const response = await fetch(targetUrl, {
