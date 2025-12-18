@@ -5,7 +5,7 @@ export const LoginContainer = styled.main`
     width: 100%;
     flex-direction: column;
     flex-grow: 1;
-    /* margin-top: 3rem; */
+    margin-top: -5rem;
     align-items: center;
     justify-content: center;
 `
