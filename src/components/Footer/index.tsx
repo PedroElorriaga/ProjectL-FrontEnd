@@ -21,7 +21,6 @@ export default function Footer() {
 
         if (token) {
             const decoded = jwtDecode<TokenPayload>(token);
-            console.log(decoded)
             setIsAdmin(decoded.user_role === 'admin')
         }
         return !!token;
