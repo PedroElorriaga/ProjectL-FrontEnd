@@ -70,7 +70,6 @@ export default function Catalog() {
                         <p>{selectedPerfume.ml} ml</p>
                         <p>{selectedPerfume.tags}</p>
                         <p>{selectedPerfume.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-
                     </ModalContent>
                 </ModalOverlay>
             )}

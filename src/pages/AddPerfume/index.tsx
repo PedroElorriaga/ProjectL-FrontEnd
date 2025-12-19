@@ -2,9 +2,11 @@ import { CatalogContainer, FormAddPerfumeContainer, PerfumeLabelDiv } from "./st
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import type { FormEvent } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function AddPerfume() {
-
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -39,15 +41,15 @@ export default function AddPerfume() {
             if (response.ok) {
                 const result = await response.json();
                 console.log('Sucesso:', result);
-                alert('Produto adicionado com sucesso!');
+                toast.success('Produto adicionado com sucesso!');
             } else {
                 const errorBody = await response.json();
                 console.error('Erro ao adicionar produto:', errorBody);
-                alert(`Erro: ${errorBody.message || response.statusText}`);
+                toast.error(`Erro: ${errorBody.message || response.statusText}`);
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
-            alert('Falha na comunicação com o servidor.');
+            toast.error('Falha na comunicação com o servidor.');
         }
     };
 
@@ -79,6 +81,7 @@ export default function AddPerfume() {
                         <input type="submit" value="Adicionar" />
                     </PerfumeLabelDiv>
                 </FormAddPerfumeContainer>
+                <ToastContainer position="bottom-center" autoClose={3000} />
             </CatalogContainer>
             <Footer />
         </>

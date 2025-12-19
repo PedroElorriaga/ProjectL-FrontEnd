@@ -2,9 +2,10 @@ import { LoginContainer, LoginForm, LoginHeaderContainer } from "./styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import type { FormEvent } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function LoginPerfume() {
-
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -30,16 +31,18 @@ export default function LoginPerfume() {
             if (response.ok) {
                 const result = await response.json();
                 localStorage.setItem('jwt_token', result.token)
-                alert('Usuario logado com sucesso!');
-                window.location.href = '/catalogo';
+                toast.success('Usuario logado com sucesso!');
+                setTimeout(() => {
+                    window.location.href = '/catalogo';
+                }, 2000);
             } else {
                 const errorBody = await response.json();
                 console.error('Erro ao adicionar produto:', errorBody);
-                alert(`Erro: ${errorBody.message || response.statusText}`);
+                toast.error(`Erro: ${errorBody.message || response.statusText}`);
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
-            alert('Falha na comunicação com o servidor.');
+            toast.error('Falha na comunicação com o servidor.');
         }
     };
     return (
@@ -54,6 +57,7 @@ export default function LoginPerfume() {
                     <input type="password" name="password" id="password" placeholder="Senha" required />
                     <input type="submit" value="Entrar" />
                 </LoginForm>
+                <ToastContainer position="bottom-center" autoClose={2000} />
             </LoginContainer>
             <Footer />
         </>

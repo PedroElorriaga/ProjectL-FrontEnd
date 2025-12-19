@@ -5,7 +5,7 @@ export const CatalogContainer = styled.main`
     width: 100%;
     flex-direction: column;
     flex-grow: 1;
-    /* margin-top: 3rem; */
+    margin-top: -1rem;
     align-items: center;
 `
 
