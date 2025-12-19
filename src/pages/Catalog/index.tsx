@@ -63,13 +63,13 @@ export default function Catalog() {
                 <ModalOverlay onClick={handleCloseModal}>
                     <ModalContent onClick={(e) => e.stopPropagation()}>
                         <img
-                            src={`https://lorenci-perfumes-api.onrender.com/static/perfumes/${selectedPerfume.imagem_url}`}
+                            src={`${selectedPerfume.imagem_url}`}
                             alt={selectedPerfume.perfume}
                         />
                         <h2>{selectedPerfume.perfume} {selectedPerfume.tipo}</h2>
                         <p>{selectedPerfume.ml} ml</p>
                         <p>{selectedPerfume.tags}</p>
-                        <p>R$ {selectedPerfume.preco.toFixed(2)}</p>
+                        <p>{selectedPerfume.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
 
                     </ModalContent>
                 </ModalOverlay>
