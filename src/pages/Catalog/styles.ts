@@ -61,6 +61,19 @@ export const ModalContent = styled.div`
     }
 `
 
+export const TagsContent = styled.div`
+    display: flex;
+    padding: 1rem;
+    flex-wrap: wrap;
+
+    p {
+        background-color: #af8c4b75;
+        margin: 0.25rem 0.25rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+`
+
 // export const CloseButton = styled.button`
 //     position: absolute;
 //     top: 10px;

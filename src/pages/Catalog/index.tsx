@@ -1,4 +1,4 @@
-import { CatalogContainer, CatalogHeaderContainer, ModalContent, ModalOverlay, PerfumeLayoutContainer } from "./styles";
+import { CatalogContainer, CatalogHeaderContainer, ModalContent, ModalOverlay, PerfumeLayoutContainer, TagsContent } from "./styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PerfumeCard from "../../components/PerfumeCard";
@@ -41,6 +41,7 @@ export default function Catalog() {
     };
 
     const handleCloseModal = () => {
+        console.log(selectedPerfume?.tags)
         setSelectedPerfume(null);
     };
 
@@ -68,8 +69,12 @@ export default function Catalog() {
                         />
                         <h2>{selectedPerfume.perfume} {selectedPerfume.tipo}</h2>
                         <p>{selectedPerfume.ml} ml</p>
-                        <p>{selectedPerfume.tags}</p>
                         <p>{selectedPerfume.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                        <TagsContent>
+                            {selectedPerfume.tags.map((tag) => (
+                                <p>{tag.trim()}</p>
+                            ))}
+                        </TagsContent>
                     </ModalContent>
                 </ModalOverlay>
             )}
