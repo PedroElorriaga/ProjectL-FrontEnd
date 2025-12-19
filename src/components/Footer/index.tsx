@@ -71,7 +71,21 @@ export default function Footer() {
                             )}
                         </>
                     ) : isLoggedIn ? (
-                        <SignOutIcon size={32} onClick={handleLogout} />
+                        <>
+                            {!isConfirming ? (
+                                <SignOutIcon size={32} onClick={() => setIsConfirming(true)} />
+                            ) : (
+                                // SEGUNDO CLIQUE: Agora sim desloga
+                                <div style={{ display: 'flex', alignItems: 'center', borderRadius: '8px', padding: '5px' }}>
+                                    <span onClick={handleLogout} style={{ color: 'white', marginRight: '30px', fontSize: '14px' }}>
+                                        Sair
+                                    </span>
+                                    <span onClick={() => setIsConfirming(false)} style={{ color: 'white', marginRight: '10px', fontSize: '14px' }}>
+                                        Cancelar
+                                    </span>
+                                </div>
+                            )}
+                        </>
 
                     ) : (
                         <SignInIcon size={32} onClick={handleUserClick} />

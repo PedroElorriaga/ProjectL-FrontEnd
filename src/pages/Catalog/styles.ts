@@ -43,6 +43,7 @@ export const ModalOverlay = styled.div`
 `
 
 export const ModalContent = styled.div`
+    position: relative;
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -58,6 +59,11 @@ export const ModalContent = styled.div`
     img {
         width: 50%;
         height: 50%;
+    }
+
+    button {
+        background: none;
+        border: none;
     }
 `
 
