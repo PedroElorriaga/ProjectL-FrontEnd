@@ -10,9 +10,9 @@ export default function PerfumeCard({ item, onCardClick }: CardProps) {
         <>
             {/* map Pega uma lista de coisas e a transforma em uma nova lista de coisas diferentes, uma por uma. */}
             <PerfumeContainer key={item.id} onClick={() => onCardClick(item)}>
-                <img src={`https://lorenci-perfumes-api.onrender.com/static/perfumes/${item.imagem_url}`} alt={`Imagem do ${item.perfume}`} />
+                <img src={`${item.imagem_url}`} alt={`Imagem do ${item.perfume}`} />
                 <p className="perfume">{item.perfume}</p>
-                <p className="preco">R$ {item.preco.toFixed(2)}</p>
+                <p className="preco">{item.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
             </PerfumeContainer>
         </>
     );

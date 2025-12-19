@@ -7,20 +7,24 @@ export default function AddPerfume() {
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         const form = event.currentTarget;
 
-        const data = {
-            'perfume': form['nome-perfume'].value,
-            'ml': parseInt(form['ml-perfume'].value, 10),
-            'tipo': form['tipo-perfume'].value,
-            'preco': parseFloat(form['valor-perfume'].value),
-            'tags': [form['tags-perfume'].value],
-            'imagem_url': null
-        };
+        const fileInput = form['imagem_perfume'] as HTMLInputElement;
+        const file = fileInput.files?.[0];
+
+        const formData = new FormData();
+        formData.append('perfume', form['nome-perfume'].value);
+        formData.append('ml', form['ml-perfume'].value);
+        formData.append('tipo', form['tipo-perfume'].value);
+        formData.append('preco', form['valor-perfume'].value);
+        formData.append('tags', form['tags-perfume'].value);
+        formData.append('imagem_url', form['imagem_perfume'].value);
+
+        if (file) {
+            formData.append('imagem_url', file);
+        }
 
         const targetUrl = 'https://lorenci-perfumes-api.onrender.com/catalogo/';
-
         const token = localStorage.getItem('jwt_token');
 
         try {
@@ -28,10 +32,8 @@ export default function AddPerfume() {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
                 },
-                credentials: 'include',
-                body: JSON.stringify(data)
+                body: formData
             });
 
             if (response.ok) {
