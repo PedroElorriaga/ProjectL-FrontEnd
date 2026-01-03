@@ -1,4 +1,12 @@
-import { CatalogContainer, CatalogHeaderContainer, ModalContent, ModalOverlay, PerfumeLayoutContainer, TagsContent } from "./styles";
+import {
+    CatalogContainer,
+    CatalogHeaderContainer,
+    ModalContent,
+    ModalOverlay,
+    PerfumeLayoutContainer,
+    TagsContent,
+    FilterBar
+} from "./styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PerfumeCard from "../../components/PerfumeCard";
@@ -26,18 +34,36 @@ export interface InterfacePerfume {
 export default function Catalog() {
     const [items, setItems] = useState<InterfacePerfume[]>([]);
     const [selectedPerfume, setSelectedPerfume] = useState<InterfacePerfume | null>(null);
+    const [filters, setFilters] = useState({
+        perfume: '',
+        tipo: '',
+        tags: ''
+    });
 
     const token = localStorage.getItem('jwt_token');
     const API_URL = 'https://lorenci-perfumes-api.onrender.com/catalogo/';
 
+    const fetchItems = async () => {
+        try {
+            // O Axios aceita um objeto 'params' que ele converte em Query Strings
+            const response = await axios.get(API_URL, {
+                params: {
+                    perfume: filters.perfume || undefined,
+                    tipo: filters.tipo || undefined,
+                    tags: filters.tags || undefined
+                }
+            });
+            setItems(response.data.message);
+        } catch (error) {
+            toast.error(`Erro ao buscar dados -> ${error}`);
+        }
+    };
+
     // useEffect Faz coisas depois que a tela termina de carregar, como buscar dados da internet.
     useEffect(() => {
-        axios.get(API_URL).then(response => {
-            setItems(response.data.message);
-        }).catch(error => {
-            toast.error("Erro no Axios", error.message);
-        });
-    }, []);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchItems();
+    });
 
     const isAdmin = useMemo(() => {
         if (!token) return false;
@@ -127,6 +153,26 @@ export default function Catalog() {
                 <CatalogHeaderContainer>
                     PRODUTOS IMPORTADOS
                 </CatalogHeaderContainer>
+                <FilterBar>
+                    <input
+                        placeholder="Buscar perfume..."
+                        onChange={(e) => setFilters({ ...filters, perfume: e.target.value })}
+                    />
+
+                    <div className="selects">
+                        {/* <select onChange={(e) => setFilters({ ...filters, tipo: e.target.value })}>
+                            <option value="">Todos os Tipos</option>
+                            <option value="edt">EDT</option>
+                            <option value="edp">EDP</option>
+                        </select> */}
+                        <select onChange={(e) => setFilters({ ...filters, tags: e.target.value })}>
+                            <option value="">Gênero (Todos)</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="compartilhável">Compartilhável</option>
+                        </select>
+                    </div>
+                </FilterBar>
                 <PerfumeLayoutContainer>
                     {items.map(item => (
                         <PerfumeCard key={item.id} item={item} onCardClick={handleOpenModal} />

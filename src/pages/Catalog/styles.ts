@@ -80,6 +80,23 @@ export const TagsContent = styled.div`
     }
 `
 
+export const FilterBar = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    input, select {
+        background-color: #af8c4b75;
+        border: none;
+        padding: 1rem;
+        color: white;
+        margin: 0.25rem;
+        border-radius: 5px;
+        height: 3rem;
+    }
+`
+
 // export const CloseButton = styled.button`
 //     position: absolute;
 //     top: 10px;
