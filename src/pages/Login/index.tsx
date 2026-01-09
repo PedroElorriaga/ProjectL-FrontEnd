@@ -16,7 +16,7 @@ export default function LoginPerfume() {
             'password': form['password'].value
         };
 
-        const targetUrl = 'https://lorenci-perfumes-api.onrender.com/login/';
+        const targetUrl = `${import.meta.env.VITE_API_URL}/login/`;
 
         try {
             const response = await fetch(targetUrl, {
@@ -30,7 +30,7 @@ export default function LoginPerfume() {
 
             if (response.ok) {
                 const result = await response.json();
-                localStorage.setItem('jwt_token', result.token)
+                localStorage.setItem('jwt_token', result.access_token)
                 toast.success('Usuario logado com sucesso!');
                 setTimeout(() => {
                     window.location.href = '/catalogo';

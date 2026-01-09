@@ -26,7 +26,7 @@ export default function AddPerfume() {
             formData.append('imagem_url', file);
         }
 
-        const targetUrl = 'https://lorenci-perfumes-api.onrender.com/catalogo/';
+        const targetUrl = `${import.meta.env.VITE_API_URL}/catalogo/`;
         const token = localStorage.getItem('jwt_token');
 
         try {
