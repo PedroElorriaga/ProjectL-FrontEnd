@@ -41,7 +41,7 @@ export default function Catalog() {
     });
 
     const token = localStorage.getItem('jwt_token');
-    const API_URL = 'https://lorenci-perfumes-api.onrender.com/catalogo/';
+    const API_URL = `${import.meta.env.VITE_API_URL}/catalogo/`;
 
     const fetchItems = async () => {
         try {
@@ -61,9 +61,10 @@ export default function Catalog() {
 
     // useEffect Faz coisas depois que a tela termina de carregar, como buscar dados da internet.
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
+
         fetchItems();
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filters]);
 
     const isAdmin = useMemo(() => {
         if (!token) return false;
@@ -84,7 +85,7 @@ export default function Catalog() {
     };
 
     const handleDeleteItem = async (id: number) => {
-        const API_URL = `https://lorenci-perfumes-api.onrender.com/catalogo/deletar-perfume/${id}`;
+        const API_URL = `${import.meta.env.VITE_API_URL}/deletar-perfume/${id}`;
 
         try {
             const response = await fetch(API_URL, {
@@ -114,7 +115,7 @@ export default function Catalog() {
     const handleUpdate = async () => {
         if (!editData) return;
 
-        const API_URL = `https://lorenci-perfumes-api.onrender.com/catalogo/atualizar-perfume/${editData.id}`;
+        const API_URL = `${import.meta.env.VITE_API_URL}/atualizar-perfume/${editData.id}`;
         const token = localStorage.getItem('jwt_token');
 
         try {
@@ -156,7 +157,7 @@ export default function Catalog() {
                 <FilterBar>
                     <input
                         placeholder="Buscar perfume..."
-                        onChange={(e) => setFilters({ ...filters, perfume: e.target.value })}
+                        onChange={(e) => setFilters({ ...filters, perfume: e.target.value.toLowerCase() })}
                     />
 
                     <div className="selects">
