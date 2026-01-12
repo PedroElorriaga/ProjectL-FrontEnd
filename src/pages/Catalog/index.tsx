@@ -115,7 +115,7 @@ export default function Catalog() {
     const handleUpdate = async () => {
         if (!editData) return;
 
-        const API_URL = `${import.meta.env.VITE_API_URL}/atualizar-perfume/${editData.id}`;
+        const API_URL = `${import.meta.env.VITE_API_URL}/catalogo/atualizar-perfume/${editData.id}`;
         const token = localStorage.getItem('jwt_token');
 
         try {
