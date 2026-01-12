@@ -32,6 +32,7 @@ export const FormAddPerfumeContainer = styled.form`
         border: none;
         padding: 1rem;
         color: white;
+        border-radius: 5px;
     }
 
     input::placeholder {
