@@ -55,7 +55,7 @@ export default function Catalog() {
             });
             setItems(response.data.message);
         } catch (error) {
-            toast.error(`Erro ao buscar dados -> ${error}`);
+            toast.error(`Erro ao buscar dados ${error}`);
         }
     };
 
@@ -142,7 +142,7 @@ export default function Catalog() {
             }
         } catch (error) {
             console.error("Erro ao atualizar:", error);
-            toast.error("Erro ao salvar alterações.");
+            toast.error(`Erro ao salvar alterações ${error}`);
         }
         setSelectedPerfume(null);
     };
