@@ -96,14 +96,29 @@ export const FilterBar = styled.div`
         height: 3rem;
     }
 `
+export const EditModalDiv = styled.div`
+    display: flex;
+    flex-direction: column;
 
-// export const CloseButton = styled.button`
-//     position: absolute;
-//     top: 10px;
-//     left: 15px;
-//     background: none;
-//     color: red;
-//     border: none;
-//     font-size: 1.5rem;
-//     cursor: pointer;
-// `;
+    h3 {
+        font-weight: 400;
+        font-size: 1rem;
+        margin: 0 0.5rem;
+    }
+    
+    input {
+        margin: 0.25rem;
+        background-color: #af8c4b75;
+        border: none;
+        padding: 0.75rem;
+        border-radius: 5px;
+    }
+
+    /* deactivate the increment and decrement buttons (spinners) */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+`

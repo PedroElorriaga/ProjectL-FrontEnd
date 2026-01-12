@@ -5,7 +5,8 @@ import {
     ModalOverlay,
     PerfumeLayoutContainer,
     TagsContent,
-    FilterBar
+    FilterBar,
+    EditModalDiv
 } from "./styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -24,8 +25,8 @@ interface TokenPayload {
 export interface InterfacePerfume {
     id: number;
     perfume: string;
-    preco: number;
-    ml: number;
+    preco: number | string;
+    ml: number | string;
     tags: string[];
     tipo: string;
     imagem_url: string;
@@ -217,35 +218,59 @@ export default function Catalog() {
                         <img src={selectedPerfume.imagem_url} alt={selectedPerfume.perfume} />
 
                         {isEditing && isAdmin ? (
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                            <EditModalDiv>
+                                <h3>Perfume</h3>
                                 <input
                                     type="text"
                                     value={editData?.perfume}
                                     onChange={e => setEditData({ ...editData!, perfume: e.target.value })}
                                     placeholder="Nome do Perfume"
+                                    required
                                 />
+                                <h3>Tipo</h3>
                                 <input
                                     type="text"
                                     value={editData?.tipo}
                                     onChange={e => setEditData({ ...editData!, tipo: e.target.value })}
                                     placeholder="Tipo (EDP, EDT...)"
+                                    required
                                 />
+                                <h3>Preço</h3>
                                 <input
                                     type="number"
                                     value={editData?.preco}
-                                    onChange={e => setEditData({ ...editData!, preco: Number(e.target.value) })}
+                                    onChange={e => {
+                                        const val = e.target.value;
+                                        setEditData({
+                                            ...editData!,
+                                            preco: val === "" ? "" : Number(val)
+                                        });
+                                    }}
+                                    placeholder="Preço"
+                                    required
                                 />
+                                <h3>ML</h3>
                                 <input
                                     type="number"
                                     value={editData?.ml}
-                                    onChange={e => setEditData({ ...editData!, ml: Number(e.target.value) })}
+                                    onChange={e => {
+                                        const val = e.target.value;
+                                        setEditData({
+                                            ...editData!,
+                                            ml: val === "" ? "" : Number(val)
+                                        });
+                                    }}
+                                    placeholder="ML"
+                                    required
                                 />
+                                <h3>Tags</h3>
                                 <input
                                     type="text"
                                     value={editData?.tags}
                                     onChange={e => setEditData({ ...editData!, tags: [e.target.value] })}
+                                    required
                                 />
-                            </div>
+                            </EditModalDiv>
                         ) : (
                             <>
                                 <h2>{selectedPerfume.perfume} {selectedPerfume.tipo}</h2>
