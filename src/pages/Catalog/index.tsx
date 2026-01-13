@@ -86,7 +86,7 @@ export default function Catalog() {
     };
 
     const handleDeleteItem = async (id: number) => {
-        const API_URL = `${import.meta.env.VITE_API_URL}/deletar-perfume/${id}`;
+        const API_URL = `${import.meta.env.VITE_API_URL}/catalogo/deletar-perfume/${id}`;
 
         try {
             const response = await fetch(API_URL, {
@@ -167,7 +167,7 @@ export default function Catalog() {
                             <option value="edt">EDT</option>
                             <option value="edp">EDP</option>
                         </select> */}
-                        <select onChange={(e) => setFilters({ ...filters, tags: e.target.value })}>
+                        <select onChange={(e) => setFilters({ ...filters, tags: e.target.value.toLowerCase() })}>
                             <option value="">Gênero (Todos)</option>
                             <option value="masculino">Masculino</option>
                             <option value="feminino">Feminino</option>
@@ -176,7 +176,7 @@ export default function Catalog() {
                     </div>
                 </FilterBar>
                 <PerfumeLayoutContainer>
-                    {items.map(item => (
+                    {items && items.map(item => (
                         <PerfumeCard key={item.id} item={item} onCardClick={handleOpenModal} />
                     ))}
                 </PerfumeLayoutContainer>
